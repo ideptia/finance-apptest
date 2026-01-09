@@ -278,11 +278,8 @@ updateBalance() {
         this.elements.transactionForm.reset();
     },
     
-    saveTransaction() {
-    // Получаем данные напрямую из полей (не через FormData)
+  saveTransaction() {
     const transactionId = this.elements.transactionId.value;
-    
-    // Получаем выбранный тип
     const typeRadio = document.querySelector('input[name="type"]:checked');
     
     const transaction = {
@@ -293,16 +290,11 @@ updateBalance() {
         comment: this.elements.commentInput.value.trim()
     };
     
-    // Дополнительная проверка
-    console.log('Сохраняем транзакцию:', transaction);
-    
     try {
         if (transactionId) {
-            // Обновление
             Transactions.update(transactionId, transaction);
             this.showNotification('Операция обновлена', 'success');
         } else {
-            // Добавление
             Transactions.add(transaction);
             this.showNotification('Операция добавлена', 'success');
         }
@@ -311,8 +303,8 @@ updateBalance() {
         this.updateAll();
         this.renderAllTransactions();
         
-        // Обновляем диаграммы если на странице статистики
-        if (window.Charts && document.getElementById('page-statistics').classList.contains('active')) {
+        // ← ДОБАВЬ ЭТИ СТРОКИ (обновление графиков всегда!)
+        if (window.Charts) {
             Charts.updateAll();
         }
         
