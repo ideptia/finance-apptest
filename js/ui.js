@@ -321,17 +321,18 @@ updateBalance() {
         }
     },
     
-    deleteTransaction(id) {
-        if (Transactions.delete(id)) {
-            this.showNotification('Операция удалена', 'success');
-            this.updateAll();
-            this.renderAllTransactions();
-            
-            if (window.Charts) {
-                Charts.updateAll();
-            }
+  deleteTransaction(id) {
+    if (Transactions.delete(id)) {
+        this.showNotification('Операция удалена', 'success');
+        this.updateAll();
+        this.renderAllTransactions();
+        
+        // ← ДОБАВЬ
+        if (window.Charts) {
+            Charts.updateAll();
         }
-    },
+    }
+},
     
     // ===== КАТЕГОРИИ =====
     populateCategorySelects() {
