@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Запуск приложения...');
     
-    // Проверка поддержки localStorage
+   
     if (typeof(Storage) === "undefined") {
         alert('Ваш браузер не поддерживает localStorage. Приложение не будет работать.');
         return;
     }
     
-    // Инициализация модулей
+    
     UI.init();
     Charts.init();
     
